@@ -84,7 +84,7 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-model Tool {
+model Pickaxe {
   id            String  @id @default(cuid())
   name          String
   description   String
@@ -92,15 +92,15 @@ model Tool {
   multiplier    Int
 }
 
-model UserTool {
+model UserPickaxe {
   id        String  @id @default(cuid())
   userId    String
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  toolId    String
-  tool      Tool    @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  pickaxeId String
+  pickaxe   Pickaxe    @relation(fields: [pickaxeId], references: [id], onDelete: Cascade)
   selected  Boolean
 
-  @@unique([userId, toolId])
+  @@unique([userId, pickaxeId])
 }
 
 model Planet {
@@ -146,7 +146,6 @@ model Item {
   name          String
   description   String
   price         Int
-  multiplier    Int
 }
 
 model UserItem {

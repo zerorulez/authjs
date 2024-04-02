@@ -1,19 +1,19 @@
 const { PrismaClient } = require("@prisma/client");
-const { tools } = require("./data.js");
+const { pickaxes } = require("./data.js");
 const prisma = new PrismaClient();
 
 const load = async () => {
   try {
-    await prisma.tool.deleteMany();
-    console.log("Deleted records in tool table");
+    await prisma.pickaxe.deleteMany();
+    console.log("Deleted records in pickaxe table");
 
-    await prisma.$queryRaw`ALTER TABLE Tool AUTO_INCREMENT = 1`;
-    console.log("reset tool auto increment to 1");
+    await prisma.$queryRaw`ALTER TABLE Pickaxe AUTO_INCREMENT = 1`;
+    console.log("reset pickaxe auto increment to 1");
 
-    await prisma.tool.createMany({
-      data: tools,
+    await prisma.pickaxe.createMany({
+      data: pickaxes,
     });
-    console.log("Added tool data");
+    console.log("Added pickaxe data");
   } catch (e) {
     console.error(e);
     process.exit(1);
